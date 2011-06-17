@@ -1,8 +1,8 @@
 module Tts  
   def to_url lang
     require 'uri'
-    langs = ["zh", "en"]
-    raise "Not accepted language, accpeted are #{langs * ","}" unless langs.include? lang
+    langs = ["zh", "en", "it", "fr"]
+    #raise "Not accepted language, accpeted are #{langs * ","}" unless langs.include? lang
     base = "http://translate.google.com/translate_tts?tl=#{lang}&q=#{URI.escape self}"
   end  
 
