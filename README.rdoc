@@ -1,8 +1,8 @@
 = tts
 
-Google translate tts has most available languages and reasonable synthesizer.
+Google translate TTS (text to speech) so farhas most available languages and reasonable synthesizer.
 
-This TTS(text to speech) is using google translate as the engine. submit your sentance and specified language to google and download the mp3 voice file.  
+This TTS is using it as the speech engine. submit your sentance and specified language to google and download the mp3 voice file.  
 
 == install
 gem install tts
@@ -20,4 +20,4 @@ You can also save the file with the path/filename you desired:
 
 == Copyright
 
-Copyright (c) 2011 Yiling Cao.
+Copyright (c) 2011 Yiling Cao. Check LICENSE.txt
