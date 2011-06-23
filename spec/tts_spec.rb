@@ -2,6 +2,35 @@
 require File.expand_path("../../lib/tts", __FILE__)
 require "rspec"
 
+describe "to_valid_fn method" do
+  # fn.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
+  it "should replace * with _" do
+    to_valid_fn("hello*nice").should == "hello_nice"
+    to_valid_fn("hello*nice*hello").should == "hello_nice_hello"
+  end
+  
+  it "should replace / with _" do
+    to_valid_fn("hello/nice").should == "hello_nice"
+    to_valid_fn("hello/nice/hello").should == "hello_nice_hello"
+  end
+  
+  it "should replace / with _" do
+    to_valid_fn("hello:nice").should == "hello_nice"
+    to_valid_fn("hello:nice:hello").should == "hello_nice_hello"
+  end
+  
+  it "should replace / with _" do
+    to_valid_fn("hello?nice").should == "hello_nice"
+    to_valid_fn("hello?nice?hello").should == "hello_nice_hello"
+  end
+  
+  it "should replace / with _" do
+    to_valid_fn("hello|nice").should == "hello_nice"
+    to_valid_fn("hello|nice?hello").should == "hello_nice_hello"
+  end
+  
+end 
+
 describe 'to_url method' do
   it "to_url should return a correct string" do
     "hello".to_url("en").should == "http://translate.google.com/translate_tts?tl=en&q=hello"
