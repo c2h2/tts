@@ -1,4 +1,10 @@
 # encoding: utf-8
+
+def to_valid_fn fn
+  fn.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
+end
+
+
 module Tts  
   def to_url lang
     require 'uri'
@@ -9,7 +15,7 @@ module Tts
 
   def to_file lang, file_name=nil
     require 'open-uri'
-    file_name = self +".mp3" if file_name.nil?
+    file_name = to_valid_fn(self +".mp3") if file_name.nil?
     url = self.to_url(lang)
     ua = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.68 Safari/534.24"
     begin
