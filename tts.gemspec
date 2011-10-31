@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{tts}
+  s.name = "tts"
   s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yiling Cao"]
-  s.date = %q{2011-06-18}
-  s.description = %q{easy way to generate a voice file based on text prvoided.}
-  s.email = %q{yiling.cao@gmail.com}
+  s.date = "2011-10-31"
+  s.description = "easy way to generate a voice file based on text prvoided."
+  s.email = "yiling.cao@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -29,14 +29,13 @@ Gem::Specification.new do |s|
     "spec/tts_spec.rb",
     "tts.gemspec"
   ]
-  s.homepage = %q{http://github.com/c2h2/tts}
+  s.homepage = "http://github.com/c2h2/tts"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
-  s.summary = %q{a text to speech file tool}
+  s.rubygems_version = "1.8.10"
+  s.summary = "a text to speech file tool"
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
