@@ -1,12 +1,9 @@
 = tts
 
-Using the Google Translate service as the speech engine, this gem generates a .mp3 file from any given string.
-
-== Install
-     [sudo] gem install tts
+Using the Google Translate service as the speech engine, this gem generates a .mp3 voice file from any given string.
 
 == Usage
-     # Will downloard "Hello World!.mp3" to your current directory
+     # Will download "Hello World!.mp3" to your current directory
      # Supported languages: ["zh", "en", "it", "fr"] 
      "Hello World!".to_file "en"
 
@@ -16,9 +13,6 @@ Using the Google Translate service as the speech engine, this gem generates a .m
      # Supports large text files, as the gem will batch up the requests to Google (as each request max 100 chars)
      text = "People living on the east coast of England have been warned to stay away from their homes because of further high tides expected later. The tidal surge that hit the UK is said to have been the worst for 60 years, with thousands abandoning their homes."
      text.to_file "en"
-
-     # If you have problems reaching the Google Translate server, you can set another server url
-     Tts.server_url "http://www.3rdparty.com/translate_tts" 
 
 == Copyright
 
