@@ -3,9 +3,13 @@
 Using the Google Translate service as the speech engine, this gem generates a .mp3 voice file from any given string.
 
 == Usage
+		 require 'tts'
      # Will download "Hello World!.mp3" to your current directory
      # Supported languages: ["zh", "en", "it", "fr"] 
      "Hello World!".to_file "en"
+ 
+     # i18n
+     "人民代表代表人民".to_file "zh"
 
      # Save the file to a specific location
      "Light rain with highs of 5 degrees".to_file "en", "~/weather.mp3"
