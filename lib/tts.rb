@@ -6,6 +6,11 @@ module Tts
   @@default_url = "http://translate.google.com/translate_tts"
   @@user_agent  = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.68 Safari/534.24"  
 
+  def self.server_url url=nil
+    return @@default_url if url.nil?
+    @@default_url = url
+  end
+
   def to_file lang, file_name=nil
     parts = validate_text_length(self)
     file_name = generate_file_name(self[0..20]) if file_name.nil?
