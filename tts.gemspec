@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "tts"
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yiling Cao"]
-  s.date = "2011-10-31"
+  s.date = "2014-01-14"
   s.description = "easy way to generate a voice file based on text prvoided."
   s.email = "yiling.cao@gmail.com"
   s.extra_rdoc_files = [
@@ -24,15 +24,13 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/tts.rb",
-    "pkg/tts-.gem",
-    "pkg/tts-0.0.1.gem",
     "spec/tts_spec.rb",
     "tts.gemspec"
   ]
   s.homepage = "http://github.com/c2h2/tts"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.23"
   s.summary = "a text to speech file tool"
 
   if s.respond_to? :specification_version then
