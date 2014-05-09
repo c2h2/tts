@@ -2,6 +2,12 @@
 
 Using the Google Translate service as the speech engine, this gem generates a .mp3 voice file from any given string.
 
+== Direct play
+You need to install `mpg123`
+
+    sudo apt-get install mpg123 #for debain based
+    brew install mpg123 #mac
+
 == Usage
 
      require 'tts'
