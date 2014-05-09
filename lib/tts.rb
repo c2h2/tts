@@ -13,7 +13,7 @@ module Tts
 
   def to_file lang, file_name=nil
     parts = validate_text_length(self)
-    file_name = generate_file_name(self[0..20]) if file_name.nil?
+    file_name = self[0..20].generate_file_name if file_name.nil?
     parts.each do |part|
       url = part.to_url(lang)
       fetch_mp3(url, file_name) 
@@ -46,16 +46,16 @@ module Tts
     text.gsub(/\s+/m, ' ').strip.split(" ")
   end
 
-  def generate_file_name text
-    to_valid_fn(text + ".mp3")
+  def generate_file_name
+    to_valid_fn + ".mp3"
   end
 
-  def to_valid_fn fn
-    fn.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
+  def to_valid_fn 
+    gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
   end
 
   def to_url lang
-    langs = ["zh", "en", "it", "fr"]
+    langs = ['af', 'ar', 'az', 'be', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi', 'fr', 'ga', 'gl', 'gu', 'hi', 'hr', 'ht', 'hu', 'id', 'is', 'it', 'iw', 'ja', 'ka', 'kn', 'ko', 'la', 'lt', 'lv', 'mk', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'vi', 'yi', 'zh', 'zh-CN', 'zh-TW']
     raise "Not accepted language, accpeted are #{langs * ","}" unless langs.include? lang
     base = "#{Tts.server_url}?tl=#{lang}&q=#{URI.escape self}"
   end
@@ -76,6 +76,19 @@ module Tts
 
   def merge_mp3_file file_name
     `cat temp.mp3 >> "#{file_name}" && rm temp.mp3`
+  end
+
+  def play lang="en", times=1, pause_gap = 1 
+    #test if mpg123 exists?
+    `which mpg123`
+    if $?.to_i != 0
+      puts "mpg123 executable NOT found. This function only work with POSIX systems.\n Install mpg123 with `brew install mpg123` or `apt-get install mpg123`"
+      exit 1
+    end
+    fn = "tts_playonce"
+    self.to_file(lang, fn)
+    times.times{|i| `mpg123 -q #{fn}`}
+    File.delete(fn)
   end
 
 end

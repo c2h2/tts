@@ -3,32 +3,30 @@ require File.expand_path("../../lib/tts", __FILE__)
 require "rspec"
 
 describe "to_valid_fn method" do
-  # Tts.server_url  "http://127.0.0.1:3001/translate_tts"
-
   # fn.gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
   it "should replace * with _" do
-    to_valid_fn("hello*nice").should == "hello_nice"
-    to_valid_fn("hello*nice*hello").should == "hello_nice_hello"
+    "hello*nice".to_valid_fn.should == "hello_nice"
+    "hello*nice*hello".to_valid_fn.should == "hello_nice_hello"
   end
 
   it "should replace / with _" do
-    to_valid_fn("hello/nice").should == "hello_nice"
-    to_valid_fn("hello/nice/hello").should == "hello_nice_hello"
+    "hello/nice".to_valid_fn.should == "hello_nice"
+    "hello/nice/hello".to_valid_fn.should == "hello_nice_hello"
   end
 
   it "should replace / with _" do
-    to_valid_fn("hello:nice").should == "hello_nice"
-    to_valid_fn("hello:nice:hello").should == "hello_nice_hello"
+    "hello:nice".to_valid_fn.should == "hello_nice"
+    "hello:nice:hello".to_valid_fn.should == "hello_nice_hello"
   end
 
   it "should replace / with _" do
-    to_valid_fn("hello?nice").should == "hello_nice"
-    to_valid_fn("hello?nice?hello").should == "hello_nice_hello"
+    "hello?nice".to_valid_fn.should == "hello_nice"
+    "hello?nice?hello".to_valid_fn.should == "hello_nice_hello"
   end
 
   it "should replace / with _" do
-    to_valid_fn("hello|nice").should == "hello_nice"
-    to_valid_fn("hello|nice?hello").should == "hello_nice_hello"
+    "hello|nice".to_valid_fn.should == "hello_nice"
+    "hello|nice?hello".to_valid_fn.should == "hello_nice_hello"
   end
 
 end
@@ -63,6 +61,27 @@ describe 'to_file method' do
     File.delete("人民广场到了.mp3")
   end
 
+  it "to_file should generate a mp3 file for a correct simplified chinese string" do
+    "人民广场马上到了".to_file("zh-CN")
+    File.exist?("人民广场马上到了.mp3").should be_true
+    File.delete("人民广场马上到了.mp3")
+  end
+
+  it "to_file should fail a non-exist language" do
+    expect{"人民广场马上到了".to_file("dummy")}.should raise_error(RuntimeError)
+    File.exist?("人民广场马上到了.mp3").should be_false
+  end
+
+end
+
+describe 'generate a correct mp3 file with long text and play via mpg123' do
+  it "should playback a correct test mp3 file" do
+    "Testing sound with the ruby gem TTS... if you hear the sound correctly, This single test is passed. Thank you very much for you patience...".play
+  end
+
+  it "should playback a correct Chinese test mp3 file" do
+    "谢谢测试。测试通过".play("zh")
+  end
 end
 
 describe 'set a server url' do
@@ -73,7 +92,4 @@ describe 'set a server url' do
   it "to_url should return a correct string" do
     "hello".to_url("en").should == "http://127.0.0.1:3001/translate_tts?tl=en&q=hello"
   end
-
-
-
 end
