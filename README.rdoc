@@ -3,7 +3,8 @@
 Using the Google Translate service as the speech engine, this gem generates a .mp3 voice file from any given string.
 
 == Usage
-		 require 'tts'
+
+     require 'tts'
      # Will download "Hello World!.mp3" to your current directory
      # Supported languages: ["zh", "en", "it", "fr"] 
      "Hello World!".to_file "en"
@@ -23,6 +24,9 @@ Using the Google Translate service as the speech engine, this gem generates a .m
 
      #Direct playback in other language (2 times)
       "Oggi il tempo è buono, andiamo in gita di esso.".play("it", 2)
+
+     #RTL Arabic language
+     "اليوم كان الطقس جيدا، ونحن نذهب في نزهة منه.".play("ar")
 
 == Versions
 
