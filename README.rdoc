@@ -21,6 +21,9 @@ Using the Google Translate service as the speech engine, this gem generates a .m
      #Direct playback (require mpg123 installed and in PATH with a POSIX system)
      "Established in 1853, the University of Melbourne is a public-spirited institution that makes distinctive contributions to society in research, learning and teaching and engagement.".play
 
+     #Direct playback in other language (2 times)
+      "Oggi il tempo è buono, andiamo in gita di esso.".play("it", 2)
+
 == Versions
 
 0.4 fixed issue that long text unable to generated.
