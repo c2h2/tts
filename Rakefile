@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "tts"
   gem.homepage = "http://github.com/c2h2/tts"
   gem.license = "MIT"
-  gem.summary = "a text to speech file tool"
-  gem.description = "easy way to generate a voice file based on text prvoided."
+  gem.summary = "Ruby convert text to mp3"
+  gem.description = "(tts) Text -> Mp3 made easy."
   gem.email = "yiling.cao@gmail.com"
   gem.authors = ["Yiling Cao"]
   # dependencies defined in Gemfile
