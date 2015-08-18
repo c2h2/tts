@@ -6,50 +6,38 @@
 
 Gem::Specification.new do |s|
   s.name = "tts"
-  s.version = "0.6.0"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Yiling Cao"]
-  s.date = "2015-07-20"
+  s.date = "2015-08-18"
   s.description = "easy way to generate a voice file based on text prvoided."
+  s.summary = "a text to speech file tool"
   s.email = "yiling.cao@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
   ]
-  s.files = [
-    "Gemfile",
-    "Gemfile.lock",
-    "LICENSE.txt",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION",
-    "lib/tts.rb",
-    "spec/tts_spec.rb",
-    "tts.gemspec"
-  ]
+  
+  s.executables   = ["tts", "text2mp3"]
+  s.files         =  `git ls-files`.split($/)
+
   s.homepage = "http://github.com/c2h2/tts"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.8"
-  s.summary = "a text to speech file tool"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["~> 2.6"])
-      s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.2"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.6"])
-      s.add_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.6"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
   end
 end
 

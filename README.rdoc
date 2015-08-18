@@ -34,10 +34,16 @@ You need to install `mpg123`
     sudo apt-get install mpg123 #for debain based
     brew install mpg123 #mac
 
+== CLI
+
+    tts "ruby is great"   # play the string.
+    text2mp3 "中国上海天气不错" "zh" ＃create mp3 file.
+
 == Versions
 
 0.4 fixed issue that long text unable to generated.
 0.5 added all supported languages, added direct playback feature fixed some broken rspec.
+0.7 added CLI support
 
 == Copyright
 
