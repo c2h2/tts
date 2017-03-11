@@ -33,11 +33,11 @@ end
 
 describe 'to_url method' do
   it "to_url should return a correct string" do
-    "hello".to_url("en").should == "http://translate.google.com/translate_tts?tl=en&q=hello"
+    "hello".to_url("en").should == "http://translate.google.com/translate_tts?tl=en&ie=UTF-8&client=tw-ob&q=hello"
   end
 
   it "to_url should return a correct string with chinese char" do
-    "人民广场".to_url("zh").should == "http://translate.google.com/translate_tts?tl=zh&q=%E4%BA%BA%E6%B0%91%E5%B9%BF%E5%9C%BA"
+    "人民广场".to_url("zh").should == "http://translate.google.com/translate_tts?tl=zh&ie=UTF-8&client=tw-ob&q=%E4%BA%BA%E6%B0%91%E5%B9%BF%E5%9C%BA"
   end
 
 end
@@ -90,6 +90,6 @@ describe 'set a server url' do
   end
 
   it "to_url should return a correct string" do
-    "hello".to_url("en").should == "http://127.0.0.1:3001/translate_tts?tl=en&q=hello"
+    "hello".to_url("en").should == "http://127.0.0.1:3001/translate_tts?tl=en&ie=UTF-8&client=tw-ob&q=hello"
   end
 end
