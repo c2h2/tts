@@ -41,10 +41,10 @@ You need to install `mpg123`
 
 == Versions
 
-0.4 fixed issue that long text unable to generated.
-0.5 added all supported languages, added direct playback feature fixed some broken rspec.
-0.7 added CLI support
-0.7.1 fixed new google API
+* 0.4 fixed issue that long text unable to generated.
+* 0.5 added all supported languages, added direct playback feature fixed some broken rspec.
+* 0.7 added CLI support
+* 0.7.1 fixed new google API
 
 == Copyright
 
