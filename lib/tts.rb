@@ -81,9 +81,10 @@ module Tts
 
   def play lang="en", times=1, pause_gap = 1 
     #test if mpg123 exists?
-    `which mpg123`
+    # where is the Windows version of which
+    if is_windows = (ENV['OS'] == 'Windows_NT') then `where mpg123` else `which mpg123` end
     if $?.to_i != 0
-      puts "mpg123 executable NOT found. This function only work with POSIX systems.\n Install mpg123 with `brew install mpg123` or `apt-get install mpg123`"
+      puts "mpg123 executable NOT found. \n Install mpg123 with `brew install mpg123` or `apt-get install mpg123` or make sure your windows path contains the executables"
       exit 1
     end
     fn = "tts_playonce"
