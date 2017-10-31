@@ -16,7 +16,7 @@ module Tts
     parts = validate_text_length(self)
     file_name = self[0..20].generate_file_name if file_name.nil?
     parts.each do |part|
-      url = part.to_url(lang)
+      url = part.to_tts_url(lang)
       fetch_mp3(url, file_name) 
     end
   end
@@ -55,7 +55,7 @@ module Tts
     gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
   end
 
-  def to_url lang
+  def to_tts_url lang
     langs = ['af', 'ar', 'az', 'be', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'en_us', 'en_gb', 'en_au', 'eo', 'es', 'et', 'eu', 'fa', 'fi', 'fr', 'ga', 'gl', 'gu', 'hi', 'hr', 'ht', 'hu', 'id', 'is', 'it', 'iw', 'ja', 'ka', 'kn', 'ko', 'la', 'lt', 'lv', 'mk', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'vi', 'yi', 'zh', 'zh-CN', 'zh-TW']
     raise "Not accepted language, accpeted are #{langs * ","}" unless langs.include? lang
     base = "#{Tts.server_url}?tl=#{lang}&ie=UTF-8&client=tw-ob&q=#{URI.escape self}"
