@@ -34,8 +34,8 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = '--format progress -c'
 end
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
