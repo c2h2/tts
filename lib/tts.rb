@@ -88,7 +88,7 @@ module Tts
     end
     fn = "tts_playonce"
     self.to_file(lang, fn)
-    times.times{|i| `mpg123 -q #{fn}`}
+    times.times{|i| `mpg123 -q #{fn} --no-control`}
     File.delete(fn)
   end
 
