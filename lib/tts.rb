@@ -1,10 +1,11 @@
 # encoding: utf-8
 require 'open-uri'
 require 'uri'
+require 'tempfile'
 
 module Tts
   @@default_url = "http://translate.google.com/translate_tts"
-  @@user_agent  = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.68 Safari/534.24"  
+  @@user_agent  = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.68 Safari/534.24"
   @@referer     = "http://translate.google.com/"
 
   def self.server_url url=nil
@@ -17,14 +18,14 @@ module Tts
     file_name = self[0..20].generate_file_name if file_name.nil?
     parts.each do |part|
       url = part.to_url(lang)
-      fetch_mp3(url, file_name) 
+      fetch_mp3(url, file_name)
     end
   end
-  
+
   def validate_text_length text
     if text.length > 100
       chunk_text(text)
-    else 
+    else
       [text]
     end
   end
@@ -51,7 +52,7 @@ module Tts
     to_valid_fn + ".mp3"
   end
 
-  def to_valid_fn 
+  def to_valid_fn
     gsub(/[\x00\/\\:\*\?\"<>\|]/, '_')
   end
 
@@ -62,10 +63,10 @@ module Tts
   end
 
   def fetch_mp3 url, file_name
-    begin 
+    begin
       content = open(url, "User-Agent" => @@user_agent, "Referer" => @@referer).read
- 
-      File.open("temp.mp3", "wb") do |f|
+
+      File.open(temp_file_name, "wb") do |f|
         f.puts content
       end
       merge_mp3_file(file_name)
@@ -75,11 +76,15 @@ module Tts
     end
   end
 
-  def merge_mp3_file file_name
-    `cat temp.mp3 >> "#{file_name}" && rm temp.mp3`
+  def temp_file_name
+    @temp_file ||= Tempfile.new.path
   end
 
-  def play lang="en", times=1, pause_gap = 1 
+  def merge_mp3_file file_name
+    `cat #{temp_file_name} >> "#{file_name}" && rm #{temp_file_name}`
+  end
+
+  def play lang="en", times=1, pause_gap = 1
     #test if mpg123 exists?
     `which mpg123`
     if $?.to_i != 0
