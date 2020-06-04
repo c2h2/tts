@@ -77,7 +77,7 @@ module Tts
   end
 
   def temp_file_name
-    @temp_file ||= Tempfile.new.path
+    @@temp_file ||= Tempfile.new.path
   end
 
   def merge_mp3_file file_name
