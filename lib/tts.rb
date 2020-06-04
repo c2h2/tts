@@ -80,6 +80,10 @@ module Tts
     @@temp_file ||= Tempfile.new.path
   end
 
+  def play_file_name
+    @@play_file_file ||= Tempfile.new.path
+  end
+
   def merge_mp3_file file_name
     `cat #{temp_file_name} >> "#{file_name}" && rm #{temp_file_name}`
   end
@@ -91,10 +95,9 @@ module Tts
       puts "mpg123 executable NOT found. This function only work with POSIX systems.\n Install mpg123 with `brew install mpg123` or `apt-get install mpg123`"
       exit 1
     end
-    fn = "tts_playonce"
-    self.to_file(lang, fn)
-    times.times{|i| `mpg123 --no-control -q #{fn}`}
-    File.delete(fn)
+    self.to_file(lang, play_file_name)
+    times.times{|i| `mpg123 --no-control -q #{play_file_name}`}
+    File.delete(play_file_name)
   end
 
 end
